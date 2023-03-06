@@ -1,0 +1,31 @@
+version: "3"
+services:
+  proxy1:
+    image: bryant32/docker-squid:v2
+    ports:
+      - "9000:9000"
+    volumes:
+      - /home/squid1/squid1.conf:/etc/squid/squid.conf
+      - /srv/docker/squid/cache:/var/spool/squid
+      - /home/squid1/passwd:/home/squid1/passwd  
+    restart: always
+
+  proxy2:
+    image: bryant32/docker-squid:v2
+    ports:
+      - "3129:3129"
+    volumes:
+      - /home/squid1/squid2.conf:/etc/squid/squid.conf
+      - /srv/docker/squid/cache:/var/spool/squid
+      - /home/squid1/passwd:/home/squid1/passwd
+    restart: always
+
+  proxy3:
+    image: bryant32/docker-squid:v2
+    ports:
+      - "3130:3130"
+    volumes:
+      - /home/squid1/squid3.conf:/etc/squid/squid.conf
+      - /srv/docker/squid/cache:/var/spool/squid
+      - /home/squid1/passwd:/home/squid1/passwd
+    restart: always
